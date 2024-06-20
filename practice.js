@@ -1,18 +1,21 @@
 
-let init = 5;
+const arr = [0,10,20,30]
 
-var createCounter = function(init) {
-    let n = init
-    return {
-        increment: () => ++n ,
-        reset: () => init,
-        decrement: () => --n
-    }
+var filter = function(arr, fn) {
+   console.log(arr)
+
+   const result = []
+   for (let i = 0; i < arr.length; i++) {
+    if (fn(arr[i],i)) {
+       result.push(arr[i])
+    } 
+   }
+   return "result"
+    
 };
-const counter = createCounter(5);
 
-console.log(counter.increment())
-console.log(counter.increment())
-console.log(counter.increment())
-console.log(counter.decrement())
-console.log(counter.reset())
+// function greaterThen10(n,i){
+//     if(i>n) return true
+// }
+
+console.log(filter(arr))
