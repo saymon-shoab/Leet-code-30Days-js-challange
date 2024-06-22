@@ -1,26 +1,44 @@
-
-/**
- * @param {Function} fn
- * @return {Function}
- */
-var once = function(fn) {
+// /**
+//  * @param {Function} fn
+//  * @return {Function}
+//  */
+// function memoize(fn) {
     
+//   return function(...args) {
+      
+//   }
+// }
+
+
+
+//  let callCount = 0;
+//  const memoizedFn = memoize(function (a, b) {
+// 	 callCount += 1;
+//    return a + b;
+//  })
+//  memoizedFn(2, 3) // 5
+//  memoizedFn(2, 3) // 5
+//  console.log(callCount) // 1 
+
+
+function squire(n){
+  return n*n;
+}
+function memoize(func) {
+  let cache = {}
   return function(...args){
-      var exicutionCount = 0;
-      console.log(exicutionCount)
-      if (exicutionCount===0) {
-         exicutionCount++
-         return fn(...args)
-        }else{
-          return undefined
-        }
-      }
+    let n = args[0];
+    if (n in cache) {
+      return cache[n]
+    }else{
+      let result = func(n)
+      cache[n] = result
+      return result
+    }
   }
-
- let fn = (a,b,c) => (a + b + c)
- let onceFn = once(fn)
-
-console.log(onceFn(1,2,3))  // 6
-console.log(onceFn(2,3,6))   // returns undefined without calling fn
-console.log(onceFn(2,3,8))   // returns undefined without calling fn
-
+}
+console.time()
+// console.log(squire(34))
+let efficiantResult = memoize(squire)
+console.log(efficiantResult(4))
+console.timeEnd();
